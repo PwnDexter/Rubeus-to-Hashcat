@@ -52,7 +52,7 @@ def main():
     parser = create_arg_parser()
     args = parser.parse_args()
 
-    if args.input is not None:
+    if args is not None:
         Logger.info("Input file is %s" % args.input)
         Logger.info("Output file is %s" % args.output)
         rubeus_to_hashcat(args.input, args.output)
