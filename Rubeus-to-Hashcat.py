@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import string, argparse, re
 
@@ -29,16 +29,11 @@ def create_arg_parser():
     return parser
 
 
-def main():
+def rubeus_to_hashcat(input, output):
     gtfo = ["SamAccountName", "DistinguishedName", "ServicePrincipalName", "PwdLastSet", "Supported ETypes"]
-    parser = create_arg_parser()
-    args = parser.parse_args()
 
-    Logger.info("Input file is %s" % args.input)
-    Logger.info("Output file is %s" % args.output)
-
-    infile = open(args.input, "rt")
-    outfile = open(args.output, "wt")
+    infile = open(input, "rt")
+    outfile = open(output, "wt")
 
     files = infile.readlines()
 
@@ -51,6 +46,20 @@ def main():
             line = line.replace("$krb", "\n$krb")
             outfile.write(line)
             outfile.close
+
+
+def main():
+    parser = create_arg_parser()
+    args = parser.parse_args()
+
+    if args.input is not None:
+        Logger.info("Input file is %s" % args.input)
+        Logger.info("Output file is %s" % args.output)
+        rubeus_to_hashcat(args.input, args.output)
+        Logger.success("Hashes converted, happy cracking!")
+    else:
+        Logger.failure("Invalid arguments")
+        parser.print_help()
 
 
 '''
