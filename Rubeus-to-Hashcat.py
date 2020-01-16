@@ -24,8 +24,8 @@ class Logger:
 
 def create_arg_parser():
     parser = argparse.ArgumentParser(description="Tool to convert Rubeus kerberoast hashes into hashcat format")
-    parser.add_argument('-i', "--input", help="Input file containing Rubeus kerberoast output", required=True) #action="store", dest="inputHandle", 
-    parser.add_argument('-o', "--output", help="File to output the parsed hashes too", required=True) #action="store", dest="outputHandle", 
+    parser.add_argument('-i', "--input", help="Input file containing Rubeus kerberoast output", required=True)
+    parser.add_argument('-o', "--output", help="File to output the parsed hashes too", required=True)
     return parser
 
 
