@@ -62,8 +62,5 @@ def main():
         parser.print_help()
 
 
-'''
-Entry point
-'''
 if __name__ == "__main__":
     main()
